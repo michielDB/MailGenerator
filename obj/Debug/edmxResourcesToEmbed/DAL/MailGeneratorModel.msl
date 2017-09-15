@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MailGeneratorModelStoreContainer" CdmEntityContainer="MailGeneratorEntities">
+    <EntitySetMapping Name="Customer">
+      <EntityTypeMapping TypeName="MailGeneratorModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="VAT" ColumnName="VAT" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Article">
+      <EntityTypeMapping TypeName="MailGeneratorModel.Article">
+        <MappingFragment StoreEntitySet="Article">
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="CustomerModified" ColumnName="CustomerModified" />
+          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+          <ScalarProperty Name="CustomerCreated" ColumnName="CustomerCreated" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="ColumnNr" ColumnName="ColumnNr" />
+          <ScalarProperty Name="RowNr" ColumnName="RowNr" />
+          <ScalarProperty Name="NewsletterId" ColumnName="NewsletterId" />
+          <ScalarProperty Name="ButtonText" ColumnName="ButtonText" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="ImageAlt" ColumnName="ImageAlt" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Summary" ColumnName="Summary" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Newsletter">
+      <EntityTypeMapping TypeName="MailGeneratorModel.Newsletter">
+        <MappingFragment StoreEntitySet="Newsletter">
+          <ScalarProperty Name="CustomerModified" ColumnName="CustomerModified" />
+          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+          <ScalarProperty Name="CustomerCreated" ColumnName="CustomerCreated" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="FooterText" ColumnName="FooterText" />
+          <ScalarProperty Name="FooterImageAlt" ColumnName="FooterImageAlt" />
+          <ScalarProperty Name="FooterImage" ColumnName="FooterImage" />
+          <ScalarProperty Name="HeaderSubTitle" ColumnName="HeaderSubTitle" />
+          <ScalarProperty Name="HeaderTitle" ColumnName="HeaderTitle" />
+          <ScalarProperty Name="HeaderImageLink" ColumnName="HeaderImageLink" />
+          <ScalarProperty Name="HeaderImageAlt" ColumnName="HeaderImageAlt" />
+          <ScalarProperty Name="HeaderImage" ColumnName="HeaderImage" />
+          <ScalarProperty Name="Introduction" ColumnName="Introduction" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

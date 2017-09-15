@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MailGeneratorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="VAT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Newsletter" Relationship="MailGeneratorModel.FK_Newsletter_Customer" FromRole="Customer" ToRole="Newsletter" />
+  </EntityType>
+  <EntityContainer Name="MailGeneratorEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Customer" EntityType="Self.Customer" />
+    <EntitySet Name="Article" EntityType="MailGeneratorModel.Article" />
+    <EntitySet Name="Newsletter" EntityType="MailGeneratorModel.Newsletter" />
+    <AssociationSet Name="FK_Article_Newsletter" Association="MailGeneratorModel.FK_Article_Newsletter">
+      <End Role="Newsletter" EntitySet="Newsletter" />
+      <End Role="Article" EntitySet="Article" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Newsletter_Customer" Association="MailGeneratorModel.FK_Newsletter_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Newsletter" EntitySet="Newsletter" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Article">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ImageAlt" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Link" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ButtonText" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="NewsletterId" Type="Int32" Nullable="false" />
+    <Property Name="RowNr" Type="Int32" Nullable="false" />
+    <Property Name="ColumnNr" Type="Int32" Nullable="false" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="CustomerCreated" Type="Int32" />
+    <Property Name="DateModified" Type="DateTime" Precision="3" />
+    <Property Name="CustomerModified" Type="Int32" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Newsletter" Relationship="MailGeneratorModel.FK_Article_Newsletter" FromRole="Article" ToRole="Newsletter" />
+  </EntityType>
+  <EntityType Name="Newsletter">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Introduction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="HeaderImage" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="HeaderImageAlt" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="HeaderImageLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="HeaderTitle" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="HeaderSubTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="FooterImage" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="FooterImageAlt" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="FooterText" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="CustomerCreated" Type="Int32" />
+    <Property Name="DateModified" Type="DateTime" Precision="3" />
+    <Property Name="CustomerModified" Type="Int32" />
+    <NavigationProperty Name="Article" Relationship="MailGeneratorModel.FK_Article_Newsletter" FromRole="Newsletter" ToRole="Article" />
+    <NavigationProperty Name="Customer" Relationship="MailGeneratorModel.FK_Newsletter_Customer" FromRole="Newsletter" ToRole="Customer" />
+  </EntityType>
+  <Association Name="FK_Article_Newsletter">
+    <End Type="MailGeneratorModel.Newsletter" Role="Newsletter" Multiplicity="1" />
+    <End Type="MailGeneratorModel.Article" Role="Article" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Newsletter">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Article">
+        <PropertyRef Name="NewsletterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Newsletter_Customer">
+    <End Type="MailGeneratorModel.Customer" Role="Customer" Multiplicity="1" />
+    <End Type="MailGeneratorModel.Newsletter" Role="Newsletter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Newsletter">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

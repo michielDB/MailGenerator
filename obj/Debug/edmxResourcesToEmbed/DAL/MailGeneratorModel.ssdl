@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MailGeneratorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Article">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Summary" Type="nvarchar(max)" />
+    <Property Name="Image" Type="nvarchar" MaxLength="250" />
+    <Property Name="ImageAlt" Type="nvarchar" MaxLength="150" />
+    <Property Name="Link" Type="nvarchar" MaxLength="500" />
+    <Property Name="ButtonText" Type="nvarchar" MaxLength="150" />
+    <Property Name="NewsletterId" Type="int" Nullable="false" />
+    <Property Name="RowNr" Type="int" Nullable="false" />
+    <Property Name="ColumnNr" Type="int" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="CustomerCreated" Type="int" />
+    <Property Name="DateModified" Type="datetime" />
+    <Property Name="CustomerModified" Type="int" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="VAT" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Newsletter">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Introduction" Type="nvarchar(max)" />
+    <Property Name="HeaderImage" Type="nvarchar" MaxLength="250" />
+    <Property Name="HeaderImageAlt" Type="nvarchar" MaxLength="150" />
+    <Property Name="HeaderImageLink" Type="nvarchar(max)" />
+    <Property Name="HeaderTitle" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="HeaderSubTitle" Type="nvarchar" MaxLength="150" />
+    <Property Name="FooterImage" Type="nvarchar" MaxLength="250" />
+    <Property Name="FooterImageAlt" Type="nvarchar" MaxLength="150" />
+    <Property Name="FooterText" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="CustomerCreated" Type="int" />
+    <Property Name="DateModified" Type="datetime" />
+    <Property Name="CustomerModified" Type="int" />
+  </EntityType>
+  <Association Name="FK_Article_Newsletter">
+    <End Role="Newsletter" Type="Self.Newsletter" Multiplicity="1" />
+    <End Role="Article" Type="Self.Article" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Newsletter">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Article">
+        <PropertyRef Name="NewsletterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Newsletter_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Newsletter" Type="Self.Newsletter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Newsletter">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MailGeneratorModelStoreContainer">
+    <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Newsletter" EntityType="Self.Newsletter" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Article_Newsletter" Association="Self.FK_Article_Newsletter">
+      <End Role="Newsletter" EntitySet="Newsletter" />
+      <End Role="Article" EntitySet="Article" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Newsletter_Customer" Association="Self.FK_Newsletter_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Newsletter" EntitySet="Newsletter" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

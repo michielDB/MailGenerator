@@ -1,0 +1,54 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MailGenerator.master.cs" Inherits="MailGenerator.MailGenerator" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <%--<title></title>--%>
+    <script src="scripts/jquery/jquery-1.12.4.js"></script>
+    <script src="scripts/jquery/jquery-ui-1.12.1.js"></script>
+    <script src="scripts/bootstrap/bootstrap.js"></script>
+    <link href="Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/css/MailGenerator.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    
+    <!-- include tinymce css/js-->
+    <script type="text/javascript" src="scripts/tinymce/tinymce.min.js"></script>
+    <asp:ContentPlaceHolder ID="ContentPlaceHolderHead" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="true">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="Newsletters.aspx">MailGenerator</a>
+                </div>
+
+                <div class="navbar-collapse collapse pull-right" id="bs-example-navbar-collapse-1" aria-expanded="true">
+                    <ul class="nav navbar-nav">
+                        <li><a href="Newsletters.aspx"><asp:Literal runat="server" Text="<%$ Resources:resource, Overview%>" /></a></li>
+                        
+                        <% if(Request.IsAuthenticated) { %>
+                            <li><a href="Login.aspx?Logout=true"><asp:Literal runat="server" Text="<%$ Resources:resource, Logout %>"></asp:Literal></a></li>
+                        <% } else { %>
+                            <li><a href="Login.aspx"><asp:Literal runat="server" Text="<%$ Resources:resource, Login %>"></asp:Literal></a></li>
+                        <% } %>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolderBody" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>

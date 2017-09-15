@@ -1,0 +1,100 @@
+﻿.btnAddArticle {
+    font-family: FontAwesome;
+    content: "\f067";   /* plus */
+}
+
+.top-buffer {
+    margin-top: 10px;
+}
+
+.img-preview {
+    max-height : 150px;
+}
+
+input[type='file'] {
+    color: transparent;
+}
+
+input[type='text'] {
+    width: 50%;
+}
+
+.tinyButton {
+    width: 45px !important;
+}
+
+/* Gridview pagination */
+.pagination-ys {
+    /*display: inline-block;*/
+    padding-left: 0;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+
+.pagination-ys table > tbody > tr > td {
+    display: inline;
+}
+
+.pagination-ys table > tbody > tr > td > a,
+.pagination-ys table > tbody > tr > td > span {
+    position: relative;
+    float: left;
+    padding: 8px 12px;
+    line-height: 1.42857143;
+    text-decoration: none;
+    color: #dd4814;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    margin-left: -1px;
+}
+
+.pagination-ys table > tbody > tr > td > span {
+    position: relative;
+    float: left;
+    padding: 8px 12px;
+    line-height: 1.42857143;
+    text-decoration: none;    
+    margin-left: -1px;
+    z-index: 2;
+    color: #aea79f;
+    background-color: #f5f5f5;
+    border-color: #dddddd;
+    cursor: default;
+}
+
+/* LOGIN FORM */
+.wrapper {	
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+.form-signin {
+    max-width: 380px;
+    padding: 15px 35px 45px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.form-signin-heading,
+.checkbox {
+    margin-bottom: 30px;
+}
+.checkbox {
+    font-weight: normal;
+}
+.form-control {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+}
+input[type="text"] {
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+input[type="password"] {
+    margin-bottom: 20px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
